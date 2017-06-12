@@ -1,3 +1,13 @@
+# assorted comments:
+
+#Fairly straightforward though might take awhile for someone with no prior experience in R or any other programming language.
+#
+#The plotting section is a bit finnicky. 
+#The first two times when I plotted the graphs it worked fine but ever since then it stopped working until I restarted the R session.
+#
+# --------------------------------------------------------------------------------------------------------------
+
+
 # ex01: 
 #   Read carefully and complete the code as instructed.
 #   The places where you need to edit are indicated with **[EXERCISE]**
@@ -24,14 +34,14 @@ num_days <- 365
 #   Now you can compute the monthly and daily interest rates.
 #   Complete the following expressions.
 
-rate_monthly <- 
-rate_daily <- 
+rate_monthly <- rate_annual / num_months
+rate_daily <- rate_annual / num_days
 
 
 # 2. Compounding ----------------------------------------------------------
 # 
 # In the case of monthly compounding, the amount you have in one year from the
-# time of depsiting and the effective interest rate can be computed by the following 
+# time of depositing and the effective interest rate can be computed by the following 
 # code.
 
 compounded_monthly <- deposit * (1 + rate_monthly) ^ num_months
@@ -50,8 +60,13 @@ eair_daily <- compounded_daily / deposit - 1
 #   Write a line of code to verify that the effective rate of monthly compounding 
 #   is smaller than that of daily compounding.
 
+if(eair_daily > eair_monthly) {
+  print("the effective rate of monthly compounding is smaller than that of daily compounding")
+}
 
+#OR simply check whether the output of this is TRUE or FALSE
 
+eair_daily > eair_monthly
 
 
 # 3. More frequent compounding --------------------------------------------
@@ -76,12 +91,12 @@ eair_daily <- compounded_daily / deposit - 1
 #' @return effective annual interest rate
 eair <- function(r, n) {
   # Complete the definition.
-  effective_rate <- 
+  effective_rate <- ((1 + r / n) ^ n) - 1
   effective_rate
 }
 
 
-# Verify code with stopifnot
+# Verify code with stopifnot; compare the function eair(r, n) with the eair_monthly obtained earlier in the exercise.
 # It is a good practice to write test code. Here is an example:
 
 stopifnot(
@@ -102,12 +117,12 @@ numbers_of_compounding <- 1:N
 # **[EXERCISE]**
 #   Compute the vector of 1000 effective_rates by using eair() function. 
 #   Notice that `eair()` function accepts a vector as an argument.
-effective_rates <- 
+effective_rates <- eair(rate_annual, numbers_of_compounding)
 
 # Plotting
 pdf("4-compounding.pdf")
 plot(numbers_of_compounding, effective_rates, type = 'l')
-dev.off()
+dev.off()  
 
 
 # 5. Limit ----------------------------------------------------------------
