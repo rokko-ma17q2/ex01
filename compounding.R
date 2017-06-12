@@ -31,7 +31,7 @@ rate_daily <-
 # 2. Compounding ----------------------------------------------------------
 # 
 # In the case of monthly compounding, the amount you have in one year from the
-# time of depsiting and the effective interest rate can be computed by the following 
+# time of depositing and the effective interest rate can be computed by the following 
 # code.
 
 compounded_monthly <- deposit * (1 + rate_monthly) ^ num_months
@@ -81,7 +81,8 @@ eair <- function(r, n) {
 }
 
 
-# Verify code with stopifnot
+# Verify code with stopifnot; compare the return values of `eair(r, n)`
+# with `eair_monthly` and `eair_daily` obtained earlier in the exercise.
 # It is a good practice to write test code. Here is an example:
 
 stopifnot(
